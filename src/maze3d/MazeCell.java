@@ -13,6 +13,7 @@ import com.jme3.scene.Node;
  * @author Theo
  */
 public class MazeCell extends Node{
-    public static Box wall = new Box();
+    public static Box wall = new Box(1.0f,1.0f, 0.1f);
+    
     
 }
