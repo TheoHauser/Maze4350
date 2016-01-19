@@ -6,6 +6,7 @@ import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.CameraNode;
@@ -42,13 +43,18 @@ public class Main extends SimpleApplication {
         initLightandShadow();
         initCam();
         //
-        buildMaze(5,5);
+        buildMaze(40,30);
     }
 
     // -------------------------------------------------------------------------
     private void buildMaze(int cols, int rows) {
+        Box floor = new Box(30,40,0);
+        Geometry f = new Geometry("Floor", floor);
+        f.setMaterial(mat);
+        f.rotate(-90*FastMath.DEG_TO_RAD, 0f, 0f);
+        f.setLocalTranslation(29,-1 ,39);
+        rootNode.attachChild(f);
         maze = new Maze(cols, rows, true);
-        //int i = 0, j = 0;
         for(int i = 0; i < cols; i++){
             for(int j = 0; j < rows; j++){
                 MazeCell mc = new MazeCell(maze, i, j, mat1);
@@ -57,9 +63,6 @@ public class Main extends SimpleApplication {
                 
             }
         }
-        //
-        // INSERT CODE HERE!
-        //
 
     }
 
