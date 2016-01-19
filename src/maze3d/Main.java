@@ -34,7 +34,7 @@ public class Main extends SimpleApplication {
         initAppScreen(app);
         app.start();
     }
-
+    
     @Override
     public void simpleInitApp() {
         initGui();
@@ -42,14 +42,18 @@ public class Main extends SimpleApplication {
         initLightandShadow();
         initCam();
         //
-        buildMaze(40, 30);
+        buildMaze(5,5);
     }
 
     // -------------------------------------------------------------------------
     private void buildMaze(int cols, int rows) {
         maze = new Maze(cols, rows, true);
+        //int i = 0, j = 0;
         for(int i = 0; i < cols; i++){
             for(int j = 0; j < rows; j++){
+                MazeCell mc = new MazeCell(maze, i, j, mat1);
+                mc.setLocalTranslation(2*j, 0, 2*i);
+                rootNode.attachChild(mc);
                 
             }
         }
